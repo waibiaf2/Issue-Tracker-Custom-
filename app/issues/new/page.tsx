@@ -17,7 +17,6 @@ const NewIssuesPage = () => {
     const {register, control, handleSubmit} = useForm<IssueForm>();
     const router = useRouter();
 
-
     return (
         <form
             className="max-w-xl space-y-4"
