@@ -32,7 +32,7 @@ const NewIssuesPage = () => {
             <Controller
                 name="description"
                 control={control}
-                render={(field) =>
+                render={({field}) =>
                     <SimpleMDE
                         {...field}
                         placeholder="Description..."

@@ -1,23 +1,11 @@
 import type {Metadata} from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import '@radix-ui/themes/styles.css';
 import "./theme-config.css";
 import NavBar from "@/app/NavBar";
-import {Theme, ThemePanel} from "@radix-ui/themes";
+import {Theme} from "@radix-ui/themes";
 
-/*const geistSans = localFont({
-    src: "./fonts/GeistVF.woff",
-    variable: "--font-geist-sans",
-    weight: "100 900",
-});
-const geistMono = localFont({
-    src: "./fonts/GeistMonoVF.woff",
-    variable: "--font-geist-mono",
-    weight: "100 900",
-});*/
-
-import { Inter } from 'next/font/google';
+import {Inter} from 'next/font/google';
 
 const inter = Inter({
     subsets: ['latin'],
