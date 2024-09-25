@@ -15,12 +15,12 @@ export  async function POST(request: NextRequest) {
         return NextResponse.json(validation.error.errors, {status: 400})
     }
 
-    const issue = await prisma.issue.create({
+    const newIssue = await prisma.issue.create({
         data: {
             title: body.title,
             description: body.description
         }
     })
 
-    return NextResponse.json(issue, {status: 201})
+    return NextResponse.json(newIssue, {status: 201})
 }
