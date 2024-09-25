@@ -5,8 +5,13 @@ import {HiMiniMagnifyingGlass} from "react-icons/hi2";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 
+interface IssueForm {
+    title: string;
+    description: string;
+}
+
 const NewIssuesPage = () => {
-    const {register, control, handleSubmit} = useForm();
+    const {register, control, handleSubmit} = useForm<IssueForm>();
 
 
     return (
