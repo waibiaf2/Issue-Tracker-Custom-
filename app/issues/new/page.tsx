@@ -22,22 +22,19 @@ const NewIssuesPage = () => {
             className="max-w-xl space-y-4"
             onSubmit={
                 handleSubmit(async (data) => {
-                    await axios.post('/api/issues', data)
-                        .then(response => {
-                            console.log(response);
-                            router.push('/issues');
-                        }).catch(error => console.log(error))
+                    try {
+                        await axios.post('/api/issues', data)
+                        router.push("/issues");
+                    } catch (error) {
+                        console.error(error);
+                    }
                 })
             }
         >
             <TextField.Root
                 placeholder="Title..."
                 {...register("title", {required: true})}
-            >
-                <TextField.Slot>
-                    <HiMiniMagnifyingGlass/>
-                </TextField.Slot>
-            </TextField.Root>
+            />
             <Controller
                 name="description"
                 control={control}
