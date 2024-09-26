@@ -58,7 +58,7 @@ const IssuesPage = async () => {
                                 <Table.Cell
                                     className="hidden md:table-cell"
                                 >
-                                    {issue.createdAt.toDateString()}
+                                    {issue.createdAt.toLocaleDateString('en-UK')}
                                 </Table.Cell>
                                 <Table.RowHeaderCell>
                                     {issue.title}

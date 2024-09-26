@@ -15,7 +15,6 @@ import ErrorMessage from "@/app/components/ErrorMessage";
 type IssueForm = z.infer<typeof createIssueSchema>;
 
 const NewIssuesPage = () => {
-
     const {
         register,
         control,
