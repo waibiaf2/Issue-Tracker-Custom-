@@ -1,25 +1,30 @@
 'use client'
 import {Controller, useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {z} from "zod";
 import axios from 'axios';
-
-import {Button, Spinner, TextField} from "@radix-ui/themes";
+import {useRouter} from "next/navigation";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
-import {useRouter} from "next/navigation";
+
+import {createIssueSchema} from "@/app/validationsSchemas";
+import {Button, Spinner, TextField} from "@radix-ui/themes";
 import ErrorMessage from "@/app/components/ErrorMessage";
 
-interface IssueForm {
-    title: string;
-    description: string;
-}
+
+type IssueForm = z.infer<typeof createIssueSchema>;
 
 const NewIssuesPage = () => {
+
     const {
         register,
         control,
         handleSubmit,
         formState: {errors, isSubmitting}
-    } = useForm<IssueForm>();
+    } = useForm<IssueForm>({
+        resolver: zodResolver(createIssueSchema)
+    });
+
     const router = useRouter();
 
     return (
