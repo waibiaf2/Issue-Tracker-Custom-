@@ -23,7 +23,7 @@ const NavBar = () => {
             px-5"
         >
             <Link href="/">
-                <FaBug size={32}/>
+                <FaBug size={24}/>
             </Link>
             <ul className="flex space-x-6">
                 {
