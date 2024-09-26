@@ -4,6 +4,7 @@ import Link from "next/link";
 import prisma from "@/prisma/client";
 
 import {Table} from "@radix-ui/themes";
+import IssueStatusBadge from "@/app/api/components/IssueStatusBadge";
 
 const IssuesPage = async () => {
     const issues = await prisma.issue.findMany();
@@ -18,11 +19,21 @@ const IssuesPage = async () => {
             <Table.Root variant="surface">
                 <Table.Header>
                     <Table.Row>
-                        <Table.ColumnHeaderCell>Id</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell className="hidden md:table-cell">Status</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell  className="hidden md:table-cell">Created At</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Description</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>
+                            Id
+                        </Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell className="hidden md:table-cell">
+                            Status
+                        </Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell  className="hidden md:table-cell">
+                            Created At
+                        </Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>
+                            Title
+                        </Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>
+                            Description
+                        </Table.ColumnHeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -32,16 +43,25 @@ const IssuesPage = async () => {
                                 <Table.RowHeaderCell>
                                     {issue.id}
                                     <div className="block md:hidden">
-                                        <Table.RowHeaderCell>
-                                            {issue.status}
-                                        </Table.RowHeaderCell>
-
+                                        <IssueStatusBadge status={issue.status} />
                                     </div>
                                 </Table.RowHeaderCell>
-                                <Table.RowHeaderCell className="hidden md:table-cell">{issue.status}</Table.RowHeaderCell>
-                                <Table.Cell className="hidden md:table-cell">{issue.createdAt.toDateString()}</Table.Cell>
-                                <Table.RowHeaderCell>{issue.title}</Table.RowHeaderCell>
-                                <Table.Cell>{issue.description}</Table.Cell>
+                                <Table.RowHeaderCell
+                                    className="hidden md:table-cell"
+                                >
+                                    <IssueStatusBadge status={issue.status} />
+                                </Table.RowHeaderCell>
+                                <Table.Cell
+                                    className="hidden md:table-cell"
+                                >
+                                    {issue.createdAt.toDateString()}
+                                </Table.Cell>
+                                <Table.RowHeaderCell>
+                                    {issue.title}
+                                </Table.RowHeaderCell>
+                                <Table.Cell>
+                                    {issue.description}
+                                </Table.Cell>
                             </Table.Row>
                         )
                     }
