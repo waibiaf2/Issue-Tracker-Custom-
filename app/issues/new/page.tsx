@@ -6,6 +6,7 @@ import {Button, Spinner, TextField} from "@radix-ui/themes";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import {useRouter} from "next/navigation";
+import ErrorMessage from "@/app/components/ErrorMessage";
 
 interface IssueForm {
     title: string;
@@ -39,6 +40,9 @@ const NewIssuesPage = () => {
                 placeholder="Title..."
                 {...register("title", {required: true})}
             />
+            <ErrorMessage>
+                {errors.title?.message}
+            </ErrorMessage>
             <Controller
                 name="description"
                 control={control}
@@ -49,6 +53,9 @@ const NewIssuesPage = () => {
                     />
                 }
             />
+            <ErrorMessage>
+                {errors.title?.message}
+            </ErrorMessage>
             <Button
                 disabled={isSubmitting}
                 type="submit"
