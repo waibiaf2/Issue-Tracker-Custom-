@@ -3,7 +3,6 @@ import {Controller, useForm} from "react-hook-form";
 import axios from 'axios';
 
 import {Button, TextField} from "@radix-ui/themes";
-import {HiMiniMagnifyingGlass} from "react-icons/hi2";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import {useRouter} from "next/navigation";
