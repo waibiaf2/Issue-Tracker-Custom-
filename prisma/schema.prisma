@@ -17,8 +17,8 @@ model Issue {
   id          Int      @id @default(autoincrement())
   title       String   @db.VarChar(255)
   description String   @db.VarChar(255)
-  createAt    DateTime @default(now())
-  updateAt    DateTime @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   status      Status   @default(OPEN)
 }
 
