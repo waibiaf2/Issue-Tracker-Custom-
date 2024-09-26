@@ -2,7 +2,7 @@
 import {Controller, useForm} from "react-hook-form";
 import axios from 'axios';
 
-import {Button, TextField} from "@radix-ui/themes";
+import {Button, Spinner, TextField} from "@radix-ui/themes";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import {useRouter} from "next/navigation";
@@ -13,7 +13,12 @@ interface IssueForm {
 }
 
 const NewIssuesPage = () => {
-    const {register, control, handleSubmit} = useForm<IssueForm>();
+    const {
+        register,
+        control,
+        handleSubmit,
+        formState: {errors, isSubmitting}
+    } = useForm<IssueForm>();
     const router = useRouter();
 
     return (
@@ -45,10 +50,12 @@ const NewIssuesPage = () => {
                 }
             />
             <Button
+                disabled={isSubmitting}
                 type="submit"
                 size={"3"}
                 className="hover:cursor-pointer"
             >
+                { isSubmitting ? <Spinner /> : "" }
                 Submit New Issue
             </Button>
         </form>

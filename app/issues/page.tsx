@@ -4,7 +4,7 @@ import Link from "next/link";
 import prisma from "@/prisma/client";
 
 import {Table} from "@radix-ui/themes";
-import IssueStatusBadge from "@/app/api/components/IssueStatusBadge";
+import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 
 const IssuesPage = async () => {
     const issues = await prisma.issue.findMany();
@@ -22,10 +22,14 @@ const IssuesPage = async () => {
                         <Table.ColumnHeaderCell>
                             Id
                         </Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell className="hidden md:table-cell">
+                        <Table.ColumnHeaderCell
+                            className="hidden md:table-cell"
+                        >
                             Status
                         </Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell  className="hidden md:table-cell">
+                        <Table.ColumnHeaderCell
+                            className="hidden md:table-cell"
+                        >
                             Created At
                         </Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>
