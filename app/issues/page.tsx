@@ -5,9 +5,13 @@ import prisma from "@/prisma/client";
 
 import {Table} from "@radix-ui/themes";
 import IssueStatusBadge from "@/app/components/IssueStatusBadge";
+import delay from "delay";
 
 const IssuesPage = async () => {
-    const issues = await prisma.issue.findMany();
+
+    const issues = await prisma.issue.findMany({});
+
+    await delay(2000);
 
     return (
         <div className="space-y-4">
@@ -20,23 +24,20 @@ const IssuesPage = async () => {
                 <Table.Header>
                     <Table.Row>
                         <Table.ColumnHeaderCell>
-                            Id
+                            Title
                         </Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell
                             className="hidden md:table-cell"
                         >
                             Status
                         </Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>
+                            Description
+                        </Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell
                             className="hidden md:table-cell"
                         >
                             Created At
-                        </Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>
-                            Title
-                        </Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>
-                            Description
                         </Table.ColumnHeaderCell>
                     </Table.Row>
                 </Table.Header>
@@ -45,26 +46,25 @@ const IssuesPage = async () => {
                         issues.map((issue) =>
                             <Table.Row key={issue.id}>
                                 <Table.RowHeaderCell>
-                                    {issue.id}
-                                    <div className="block md:hidden">
-                                        <IssueStatusBadge status={issue.status} />
-                                    </div>
+                                    <Link href={`/issues/${issue.id}`}>
+                                        {issue.title}
+                                        <div className="block md:hidden">
+                                            <IssueStatusBadge status={issue.status}/>
+                                        </div>
+                                    </Link>
                                 </Table.RowHeaderCell>
                                 <Table.RowHeaderCell
                                     className="hidden md:table-cell"
                                 >
                                     <IssueStatusBadge status={issue.status} />
                                 </Table.RowHeaderCell>
+                                <Table.Cell>
+                                    {issue.description}
+                                </Table.Cell>
                                 <Table.Cell
                                     className="hidden md:table-cell"
                                 >
                                     {issue.createdAt.toLocaleDateString('en-UK')}
-                                </Table.Cell>
-                                <Table.RowHeaderCell>
-                                    {issue.title}
-                                </Table.RowHeaderCell>
-                                <Table.Cell>
-                                    {issue.description}
                                 </Table.Cell>
                             </Table.Row>
                         )
