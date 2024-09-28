@@ -6,6 +6,7 @@ import prisma from "@/prisma/client";
 import {Table} from "@radix-ui/themes";
 import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 import delay from "delay";
+import IssueActions from "@/app/issues/IssueActions";
 
 const IssuesPage = async () => {
 
@@ -16,9 +17,7 @@ const IssuesPage = async () => {
     return (
         <div className="space-y-4">
 
-            <Button size={"4"}>
-                <Link href="/issues/new">New Issue</Link>
-            </Button>
+            <IssueActions/>
 
             <Table.Root variant="surface">
                 <Table.Header>
